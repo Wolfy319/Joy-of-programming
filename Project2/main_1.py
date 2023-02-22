@@ -4,7 +4,7 @@ import ast
 inputFile = 'testExamples.py'
 
 def findHeaders(inputPath, outputPath):
-  input = open(inputPath, encoding="utf8")
+  input = open(inputPath,encoding="utf8")
   output = open(outputPath, "w", encoding="utf8")
 
   for line in input.readlines():
