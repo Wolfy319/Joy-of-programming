@@ -4,7 +4,7 @@ import ast
 inputFile = 'testExamples.py'
 
 def findHeaders(inputPath, outputPath):
-  input = open(inputPath, "r")
+  input = open(inputPath)
   output = open(outputPath, "w")
 
   for line in input.readlines():
@@ -22,22 +22,18 @@ def checkAndFixHeader(header):
   # Parse header
   for i in range(len(header) - 1, 0, -1):
     char = header[i]
-    # Remove any characters after end of header
-    if char == ":":
-      header = header[0:i + 1] + "\n"
-      specialChars[":"].append(i)
     # Store indexes of special characters
-    elif char in specialChars:
+    if char in specialChars:
       specialChars[char].append(i)
       
   if len(specialChars["("]) == 0:
     header = header[:specialChars[" "][-1]] + "(" + header[specialChars[" "][-1] + 1:]
   # add close parenthesis if none exist
   if len(specialChars[")"]) == 0:
-    header = header[:specialChars[":"][0] - 1] + "):"
+    header = header[:specialChars[":"][0] - 1] + "):\n"
   # add colon if none exist
   if len(specialChars[":"]) == 0:
-      header = header[:specialChars[")"]] + ":\n"
+      header = header[:specialChars[")"][0]] + "):\n"
   return header.replace(" ", "") 
 
 
@@ -70,7 +66,7 @@ def printCount(filename):
 
 
 try:
-  printCount('testExamples.py')
+  printCount('print_test.py')
   # TODO for function headers:
   # - Parentheses syntax not finished:
   #   - If there are 
