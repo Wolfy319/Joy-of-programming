@@ -60,8 +60,37 @@ def checkAndFixHeader(header):
   return header  
 
 
+"""
+This class is a child inheritence of a built in ast node visiting class
+It goes through the abstract syntax tree, and checks the number of keyword prints
+It ignores the other possible print values, "print(", print in a function name.
+The tree has different names for items such as strings so this bypasses those because
+in the syntax tree they are not represeneted by their string value
+"""
+class PrintCounter(ast.NodeVisitor):
+    def __init__(self):
+        self.count = 0
+
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Name) and node.func.id == 'print':
+            self.count += 1
+        self.generic_visit(node)
+
+
+def printCount(filename):
+    with open(filename, 'r') as file:
+        code = file.read()
+
+    tree = ast.parse(code)
+    print_counter = PrintCounter()
+    print_counter.visit(tree)
+
+    print("Number of print statements: " + str(print_counter.count))
+
+
 try:
-  findHeaders(inputFile, "output.py")
+  printCount('Project2/print_test.py')
+  findHeaders(inputFile, "output.txt")
 
 finally:
   print("complete")
