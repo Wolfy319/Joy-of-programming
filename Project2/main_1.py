@@ -61,7 +61,7 @@ def checkAndFixHeader(header):
 
 
 try:
-  findHeaders(inputFile, "output.txt")
+  findHeaders(inputFile, "output.py")
 
 finally:
   print("complete")
