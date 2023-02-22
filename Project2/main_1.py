@@ -4,8 +4,8 @@ import ast
 inputFile = 'testExamples.py'
 
 def findHeaders(inputPath, outputPath):
-  input = open(inputPath)
-  output = open(outputPath, "w")
+  input = open(inputPath, encoding="utf8")
+  output = open(outputPath, "w", encoding="utf8")
 
   for line in input.readlines():
     # Parse and fix function headers
@@ -34,7 +34,7 @@ def checkAndFixHeader(header):
   # add colon if none exist
   if len(specialChars[":"]) == 0:
       header = header[:specialChars[")"][0]] + "):\n"
-  return header.replace(" ", "") 
+  return header.replace(" ", "")
 
 
 """
