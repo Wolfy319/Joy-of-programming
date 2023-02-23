@@ -1,7 +1,9 @@
 import re
 import ast
+import os
 
-inputFile = 'Project2/testExamples.py'
+# inputFile = 'Project2/testExamples.py'
+inputFile = 'testExamples.py'
 indentOutput = 'output.py'
 
 
@@ -70,21 +72,13 @@ def checkAndFixHeader(header):
         header = header[:specialChars[")"][0]] + "):\n"
     return header.replace(" ", "")
 
-
-"""
-This class is a child inheritence of a built in ast node visiting class
-It goes through the abstract syntax tree, and checks the number of keyword prints
-It ignores the other possible print values, "print(", print in a function name.
-The tree has different names for items such as strings so this bypasses those because
-in the syntax tree they are not represeneted by their string value
-"""
-
-
 class PrintCounter(ast.NodeVisitor):
+    # inheritance of node vistor class in ast library
     def __init__(self):
         self.count = 0
-
+    # defines the inherited call function
     def visit_Call(self, node):
+      # checks if there is a keyword print being used as it iterates through the tree
         if isinstance(node.func, ast.Name) and node.func.id == 'print':
             self.count += 1
         self.generic_visit(node)
@@ -93,18 +87,43 @@ class PrintCounter(ast.NodeVisitor):
 def printCount(filename):
     with open(filename, 'r', encoding="utf8") as file:
         code = file.read()
-
+    # uses the printcounter class to parse through the ast
     tree = ast.parse(code)
     print_counter = PrintCounter()
     print_counter.visit(tree)
 
-    print("Number of print statements: " + str(print_counter.count))
+    return "Number of print statements: " + str(print_counter.count)
 
+
+def printOutput():
+  # opens old file and saves it for later
+  with open(inputFile, 'r', encoding='utf-8') as file:
+      old = file.read()
+
+  # for presentation purposes
+  title = "Joy of Programming, Project 2"
+  old_title = "Old File"
+  fix_title = "Fixed File"
+
+  # fixes indents on original file
+  check_indentation(inputFile)
+  # fixes headers on fixed indent file
+  findHeaders(indentOutput, "output.txt")
+
+  # gets the fixed file and saves it for later
+  with open("output.txt", "r", encoding='utf-8') as fix_file:
+      fix = fix_file.read()
+
+  # writes the final.txt file for #4 with the old file, fixed file and print count
+  with open("final.txt", 'w', encoding='utf-8') as final:
+    final.write(title + "\n\n" + old_title + "\n\n" + old + "\n\n" + fix_title + "\n\n" + fix + "\n\n" + printCount("output.txt"))
 
 try:
-    check_indentation(inputFile)
-    findHeaders(indentOutput, "output.txt")
-    printCount("output.txt")
+    # check_indentation(inputFile)
+    # findHeaders(indentOutput, "output.txt")
+    # printCount("output.txt")
+    printOutput()
+
     # TODO for function headers:
     # - Parentheses syntax not finished:
     #   - If there are
@@ -112,6 +131,6 @@ try:
     #   - Need to make sure there are commas if there is a space between arguments
     #   - Check for this after the parseAndFixBrackets call
     #
-
+    
 finally:
     print("complete")
