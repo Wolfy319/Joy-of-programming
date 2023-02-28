@@ -125,18 +125,10 @@ def printOutput():
     final.write(title + "\n\n" + old_title + "\n\n" + old + "\n\n" + fix_title + "\n\n" + fix + "\n\n" + printCount("output.txt"))
 
 try:
-    # check_indentation(inputFile)
-    # findHeaders(indentOutput, "output.txt")
-    # printCount("output.txt")
+    check_indentation(inputFile)
+    findHeaders(indentOutput, "output.txt")
+    printCount("output.txt")
     printOutput()
-
-    # TODO for function headers:
-    # - Parentheses syntax not finished:
-    #   - If there are
-    # - Argument syntax is not checked
-    #   - Need to make sure there are commas if there is a space between arguments
-    #   - Check for this after the parseAndFixBrackets call
-    #
     
 finally:
     print("complete")
