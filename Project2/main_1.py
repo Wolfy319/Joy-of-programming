@@ -61,12 +61,15 @@ def checkAndFixHeader(header):
         if char in specialChars:
             specialChars[char].append(i)
 
+    # add open parenthesis if none exist
     if len(specialChars["("]) == 0:
+        # place after first character if no spaces
         if len(specialChars[" "]) == 0:
             header = header[0] + "(" + header[1:]
+        # else, place where first space occurs
         else:
-            header = header[:specialChars[" "][-1]] + \
-                "(" + header[specialChars[" "][-1] + 1:]
+            header = header[:specialChars[" "][0]] + \
+                "(" + header[specialChars[" "][0] + 1:]
     # add close parenthesis if none exist
     if len(specialChars[")"]) == 0:
         header = header[:specialChars[":"][0]] + "):\n"
