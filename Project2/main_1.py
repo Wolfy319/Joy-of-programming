@@ -2,8 +2,8 @@ import re
 import ast
 import os
 
-inputFile = 'Project2/testExamples.py'
-# inputFile = 'testExamples.py'
+# inputFile = 'Project2/testExamples.py'
+inputFile = 'testExamples.py'
 indentOutput = 'outputIndent.txt'
 outputFile = 'output.txt'
 finalText = 'final.txt'
