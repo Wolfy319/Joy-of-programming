@@ -12,29 +12,30 @@ def check_indentation(inputFile):
         lines = f.readlines()
 
     # Check and fix indentation errors
-    indentation_level = 1
-    updated_lines = []
+    indentation_level = 0
+    updated = []
     for line in lines:
         stripped_line = line.strip()
-        if stripped_line.startswith("if") or stripped_line.startswith("for") or stripped_line.startswith("#"):
-            updated_lines.append(
+        if stripped_line.startswith("if") or stripped_line.startswith("for"):
+            updated.append(
                 "    " * indentation_level + stripped_line + "\n")
             indentation_level += 1
         elif stripped_line.startswith("def"):
             indentation_level = 0
-            updated_lines.append(stripped_line + "\n")
+            updated.append(stripped_line + "\n")
             indentation_level += 1
+        elif stripped_line.startswith("#"):
+            updated.append("")
         elif stripped_line.startswith(""):
-            updated_lines.append(
+            updated.append(
                 "    " * indentation_level + stripped_line + "\n")
         else:
-            updated_lines.append(
+            updated.append(
                 "    " * indentation_level + stripped_line + "\n")
-            indentation_level += 1
 
     # Write the updated program to a new file
     with open(indentOutput, 'w', encoding="utf8") as f:
-        f.writelines(updated_lines)
+        f.writelines(updated)
 
 
 def findHeaders(indentOutput, outputPath):
@@ -78,13 +79,15 @@ def checkAndFixHeader(header):
         header = header[:specialChars[")"][0]] + "):\n"
     return header.replace(" ", "")
 
+
 class PrintCounter(ast.NodeVisitor):
     # inheritance of node vistor class in ast library
     def __init__(self):
         self.count = 0
     # defines the inherited call function
+
     def visit_Call(self, node):
-      # checks if there is a keyword print being used as it iterates through the tree
+        # checks if there is a keyword print being used as it iterates through the tree
         if isinstance(node.func, ast.Name) and node.func.id == 'print':
             self.count += 1
         self.generic_visit(node)
@@ -102,33 +105,35 @@ def printCount(filename):
 
 
 def printOutput(bad_file):
-  # opens old file and saves it for later
-  with open(bad_file, 'r', encoding='utf-8') as file:
-      old = file.read()
+    # opens old file and saves it for later
+    with open(bad_file, 'r', encoding='utf-8') as file:
+        old = file.read()
 
-  # for presentation purposes
-  title = "Joy of Programming, Project 2"
-  old_title = "Old File"
-  fix_title = "Fixed File"
+    # for presentation purposes
+    title = "Joy of Programming, Project 2"
+    old_title = "Old File"
+    fix_title = "Fixed File"
 
-  # fixes indents on original file
-  check_indentation(bad_file)
-  # fixes headers on fixed indent file
-  findHeaders(indentOutput, "output.txt")
+    # fixes indents on original file
+    check_indentation(bad_file)
+    # fixes headers on fixed indent file
+    findHeaders(indentOutput, "output.txt")
 
-  # gets the fixed file and saves it for later
-  with open("output.txt", "r", encoding='utf-8') as fix_file:
-      fix = fix_file.read()
+    # gets the fixed file and saves it for later
+    with open("output.txt", "r", encoding='utf-8') as fix_file:
+        fix = fix_file.read()
 
-  # writes the final.txt file for #4 with the old file, fixed file and print count
-  with open("final.txt", 'w', encoding='utf-8') as final:
-    final.write(title + "\n\n" + old_title + "\n\n" + old + "\n\n" + fix_title + "\n\n" + fix + "\n\n" + printCount("output.txt"))
+    # writes the final.txt file for #4 with the old file, fixed file and print count
+    with open("final.txt", 'w', encoding='utf-8') as final:
+        final.write(title + "\n\n" + old_title + "\n\n" + old + "\n\n" +
+                    fix_title + "\n\n" + fix + "\n\n" + printCount("output.txt"))
+
 
 try:
     # check_indentation(inputFile)
     # findHeaders(indentOutput, "output.txt")
     # printCount("output.txt")
-    printOutput("testExamples.py")
+    printOutput("Project2/testExamples.py")
 
 finally:
-    print("complete")
+    print("Complete")
