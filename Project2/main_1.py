@@ -101,9 +101,9 @@ def printCount(filename):
     return "Number of print statements: " + str(print_counter.count)
 
 
-def printOutput():
+def printOutput(bad_file):
   # opens old file and saves it for later
-  with open(inputFile, 'r', encoding='utf-8') as file:
+  with open(bad_file, 'r', encoding='utf-8') as file:
       old = file.read()
 
   # for presentation purposes
@@ -112,7 +112,7 @@ def printOutput():
   fix_title = "Fixed File"
 
   # fixes indents on original file
-  check_indentation(inputFile)
+  check_indentation(bad_file)
   # fixes headers on fixed indent file
   findHeaders(indentOutput, "output.txt")
 
@@ -125,10 +125,10 @@ def printOutput():
     final.write(title + "\n\n" + old_title + "\n\n" + old + "\n\n" + fix_title + "\n\n" + fix + "\n\n" + printCount("output.txt"))
 
 try:
-    check_indentation(inputFile)
-    findHeaders(indentOutput, "output.txt")
-    printCount("output.txt")
-    printOutput()
-    
+    # check_indentation(inputFile)
+    # findHeaders(indentOutput, "output.txt")
+    # printCount("output.txt")
+    printOutput("testExamples.py")
+
 finally:
     print("complete")
