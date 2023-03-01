@@ -1,4 +1,3 @@
-
 import ast
 
 # inputFile = 'Project2/testExamples.py'
@@ -88,7 +87,8 @@ class PrintCounter(ast.NodeVisitor):
     # defines the inherited call function
 
     def visit_Call(self, node):
-        # checks if there is a keyword print being used as it iterates through the tree
+        # checks if there is a keyword print being
+        # used as it iterates through the tree
         if isinstance(node.func, ast.Name) and node.func.id == 'print':
             self.count += 1
         self.generic_visit(node)
@@ -124,11 +124,12 @@ def printOutput(bad_file):
     with open(outputFile, "r", encoding='utf-8') as fix_file:
         fix = fix_file.read()
 
-
-    # writes the final.txt file for #4 with the old file, fixed file and print count
+    # writes the final.txt file for #4 with the old file,
+    # fixed file and print count
     with open(finalText, 'w', encoding='utf-8') as final:
         final.write(title + "\n\n" + old_title + old + "\n\n" +
                     fix_title + fix + "\n\n" + printCount(outputFile))
+
 
 try:
     printOutput(inputFile)
