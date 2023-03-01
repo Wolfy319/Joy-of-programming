@@ -133,7 +133,7 @@ try:
     # check_indentation(inputFile)
     # findHeaders(indentOutput, "output.txt")
     # printCount("output.txt")
-    printOutput("Project2/testExamples.py")
+    printOutput(inputFile)
 
 finally:
     print("Complete")
