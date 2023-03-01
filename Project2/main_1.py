@@ -128,14 +128,10 @@ def printOutput(bad_file):
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
     with open(finalText, 'w', encoding='utf-8') as final:
-        final.write(title + "\n\n" + old_title + "\n" + old + "\n\n\n" +
-                    fix_title + "\n" + fix + "\n\n" + printCount(outputFile))
-
+        final.write(title + "\n\n" + old_title + old + "\n\n" +
+                    fix_title + fix + "\n\n" + printCount(outputFile))
 
 try:
-    # check_indentation(inputFile)
-    # findHeaders(indentOutput, "outputFile")
-    # printCount("outputfile")
     printOutput(inputFile)
 
 finally:
