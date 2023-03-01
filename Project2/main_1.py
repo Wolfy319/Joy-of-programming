@@ -125,12 +125,21 @@ def printOutput(bad_file):
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
     with open("final.txt", 'w', encoding='utf-8') as final:
-        final.write(title + "\n\n" + old_title + "\n\n" + old + "\n\n" +
-                    fix_title + "\n\n" + fix + "\n\n" + printCount("output.txt"))
+        final.write(title + "\n\n" + 
+                    old_title + "\n\n" + 
+                    old + "\n\n" +
+                    fix_title + "\n\n" + 
+                    fix + "\n\n" + 
+                    printCount("output.txt"))
 
   # writes the final.txt file for #4 with the old file, fixed file and print count
     with open("final.txt", 'w', encoding='utf-8') as final:
-        final.write(title + "\n\n" + old_title + "\n" + old + "\n\n\n" + fix_title + "\n" + fix + "\n\n" + printCount("output.txt"))
+        final.write(title + "\n\n" + 
+                    old_title + "\n" + 
+                    old + "\n\n\n" + 
+                    fix_title + "\n" + 
+                    fix + "\n\n" + 
+                    printCount("output.txt"))
 
 try:
     # check_indentation(inputFile)
