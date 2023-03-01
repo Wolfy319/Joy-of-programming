@@ -1,6 +1,5 @@
-import re
+
 import ast
-import os
 
 # inputFile = 'Project2/testExamples.py'
 inputFile = 'testExamples.py'
