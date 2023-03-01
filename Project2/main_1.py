@@ -119,31 +119,31 @@ def printOutput(bad_file):
     # fixes indents on original file
     check_indentation(bad_file)
     # fixes headers on fixed indent file
-    findHeaders(indentOutput, "output.txt")
+    findHeaders(indentOutput, outputFile)
 
     # gets the fixed file and saves it for later
-    with open("output.txt", "r", encoding='utf-8') as fix_file:
+    with open(outputFile, "r", encoding='utf-8') as fix_file:
         fix = fix_file.read()
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
-    with open("final.txt", 'w', encoding='utf-8') as final:
+    with open(finalText, 'w', encoding='utf-8') as final:
         final.write(title + "\n\n" + 
                     old_title + "\n\n" + 
                     old + "\n\n" +
                     fix_title + "\n\n" + 
                     fix + "\n\n" + 
-                    printCount("output.txt"))
+                    printCount(outputFile))
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
-    with open("final.txt", 'w', encoding='utf-8') as final:
+    with open(finalText, 'w', encoding='utf-8') as final:
         final.write(title + "\n\n" + old_title + "\n" + old + "\n\n\n" +
-                    fix_title + "\n" + fix + "\n\n" + printCount("output.txt"))
+                    fix_title + "\n" + fix + "\n\n" + printCount(outputFile))
 
 
 try:
     # check_indentation(inputFile)
     # findHeaders(indentOutput, "output.txt")
-    # printCount("output.txt")
+    # printCount("")
     printOutput(inputFile)
 
 finally:
