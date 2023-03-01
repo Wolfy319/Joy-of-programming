@@ -125,14 +125,6 @@ def printOutput(bad_file):
     with open(outputFile, "r", encoding='utf-8') as fix_file:
         fix = fix_file.read()
 
-    # writes the final.txt file for #4 with the old file, fixed file and print count
-    with open(finalText, 'w', encoding='utf-8') as final:
-        final.write(title + "\n\n" +
-                    old_title + "\n\n" +
-                    old + "\n\n" +
-                    fix_title + "\n\n" +
-                    fix + "\n\n" +
-                    printCount(outputFile))
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
     with open(finalText, 'w', encoding='utf-8') as final:
