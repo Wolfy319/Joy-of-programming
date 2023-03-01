@@ -2,9 +2,9 @@ import re
 import ast
 import os
 
-# inputFile = 'Project2/testExamples.py'
-inputFile = 'testExamples.py'
-indentOutput = 'output.py'
+inputFile = 'Project2/testExamples.py'
+# inputFile = 'testExamples.py'
+indentOutput = 'outputIndent.txt'
 outputFile = 'output.txt'
 finalText = 'final.txt'
 
@@ -127,11 +127,11 @@ def printOutput(bad_file):
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
     with open(finalText, 'w', encoding='utf-8') as final:
-        final.write(title + "\n\n" + 
-                    old_title + "\n\n" + 
+        final.write(title + "\n\n" +
+                    old_title + "\n\n" +
                     old + "\n\n" +
-                    fix_title + "\n\n" + 
-                    fix + "\n\n" + 
+                    fix_title + "\n\n" +
+                    fix + "\n\n" +
                     printCount(outputFile))
 
     # writes the final.txt file for #4 with the old file, fixed file and print count
