@@ -142,8 +142,8 @@ def printOutput(bad_file):
 
 try:
     # check_indentation(inputFile)
-    # findHeaders(indentOutput, "output.txt")
-    # printCount("")
+    # findHeaders(indentOutput, "outputFile")
+    # printCount("outputfile")
     printOutput(inputFile)
 
 finally:
