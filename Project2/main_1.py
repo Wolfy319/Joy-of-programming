@@ -5,6 +5,8 @@ import os
 # inputFile = 'Project2/testExamples.py'
 inputFile = 'testExamples.py'
 indentOutput = 'output.py'
+outputFile = 'output.txt'
+finalText = 'final.txt'
 
 
 def check_indentation(inputFile):

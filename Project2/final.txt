@@ -3,7 +3,6 @@ Joy of Programming, Project 2
 Old File
 
 
-
 #1. Check to make sure all the indentation in the input program is used correctly. If not, fix it. 
 
 def welcome_student(name):
@@ -45,8 +44,8 @@ def welcome_print_hard(name):
     print(f"Print: {name}! Welcome to CS3210. finished Print") 
     #the keyword “print” is used as keyword for only 1 time.
 
-Fixed File
 
+Fixed File
 
 
 
