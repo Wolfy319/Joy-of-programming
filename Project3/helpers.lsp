@@ -1,11 +1,14 @@
-(write-line "Hello World")
-(defun boolean-implies (a b)
-    (IF (EQ a t) b t)
-)
+;; Get the element at the target index in a list
+(defun get-element-at (i target elements) 
+    (if (= i target) ;; Check if i == desired index
+        (car elements) ;; If true, return first element of list
+        (when (<= i target) ;; If false, increment i and pop list, then loop
+            (get-element-at (+ i 1) target (cdr elements)))))
 
+;; Loop from i to end 
 (defun fake-for-loop (i end)
     (when (<= i end)
-        (print i)
+        (;; Looping logic goes here)
     (fake-for-loop (+ i 1) 10)))
 
 ;; Test for loop function   
