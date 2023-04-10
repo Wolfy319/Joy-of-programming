@@ -4,6 +4,17 @@
     (IF (EQ a t) b t)
 )
 
+; boolean xor
+(defun boolean-xor (a b)
+  (if (not (equal a b)) t nil))
+
+; using implication function to get bi-implication
+(defun bi-imp (a b)
+  (let ((x (boolean-implies a b)))
+    (let ((y (boolean-implies b a)))
+      (if (equal x y)
+          t
+          nil))))
 ;; ---------------------- UTILITY FUNCTIONS ---------------------- 
 
 ;; Get the element at the target index in a list
