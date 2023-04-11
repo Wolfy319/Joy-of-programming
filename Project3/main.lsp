@@ -15,6 +15,18 @@
       (if (equal x y)
           t
           nil))))
+
+;; Member of a Set
+(defun set-member (set target)
+    (let ((frst (first set)))
+        (if (eq frst target)
+            t
+            (if (eq frst Nil)
+                nil
+                (set-member (cdr set) target)))))
+; test
+(print (set-member `(1 2) 3)) ;Nil
+(print (set-member `(1 4) 4)) ;T
 ;; ---------------------- UTILITY FUNCTIONS ---------------------- 
 
 ;; Get the element at the target index in a list
