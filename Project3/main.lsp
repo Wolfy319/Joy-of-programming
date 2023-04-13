@@ -39,8 +39,9 @@
 ;; Loop from i to end 
 (defun fake-for-loop (i end)
     (when (<= i end)
-        (;; Looping logic goes here)
-    (fake-for-loop (+ i 1) 10)))
+        (print i)
+        ;; Looping logic goes here)
+    (fake-for-loop (+ i 1) end)))
 
 ;; ---------------------- UNIT TESTS -----------------------------
 
