@@ -24,6 +24,24 @@
             (if (eq frst Nil)
                 nil
                 (set-member (cdr set) target)))))
+
+
+
+
+;Intersection
+(defun set-intersection (set-1 set-2)
+  (cond ((null set-1) nil)
+        ((null set-2) nil)
+        ((set-member set-2 (car set-1))
+         (cons (car set-1) (set-intersection (cdr set-1) set-2)))
+        (t (set-intersection (cdr set-1) set-2))))
+
+;; Test
+(print(set-intersection '(1 2 3) '())) ;;Nil
+(print(set-intersection '(2 3) '(2 2 2 3))) ;(2 3)
+
+
+
 ; test
 (print (set-member `(1 2) 3)) ;Nil
 (print (set-member `(1 4) 4)) ;T
