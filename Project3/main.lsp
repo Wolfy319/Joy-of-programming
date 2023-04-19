@@ -25,7 +25,7 @@
                 nil
                 (set-member (cdr set) target)))))
 
-;; Uses union to return a sorted union of two sets w/o duplicates
+;; Uses union to return a sorted list of two sets w/o duplicates
 (defun set-union (set-1 set-2)
   (if (null set-2)
       (sort set-1 #'<)
@@ -74,7 +74,7 @@
 (fake-for-loop 1 10)
 
 ;; Test set-union function
-(print (set-union '(1 2) '(2 4))) ;'(1 2 4)
+(print (set-union '(1 2) '(2 4)))
 
 ;; Test boolean-implies function
 (print (boolean-implies t nil))
