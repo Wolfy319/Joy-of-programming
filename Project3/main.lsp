@@ -25,7 +25,14 @@
                 nil
                 (set-member (cdr set) target)))))
 
-
+;; Uses union to return a sorted union of two sets w/o duplicates
+(defun set-union (set-1 set-2)
+  (if (null set-2)
+      (sort set-1 #'<)
+      (let ((elem (car set-2)))
+        (if (set-member set-1 elem)
+            (set-union set-1 (cdr set-2))
+            (set-union (cons elem set-1) (cdr set-2))))))
 
 
 ;Intersection
@@ -65,6 +72,9 @@
 
 ;; Test for loop function   
 (fake-for-loop 1 10)
+
+;; Test set-union function
+(print (set-union '(1 2) '(2 4))) ;'(1 2 4)
 
 ;; Test boolean-implies function
 (print (boolean-implies t nil))
