@@ -27,7 +27,7 @@
 
 ;; Uses union to return a sorted list of two sets w/o duplicates
 (defun set-union (set-1 set-2)
-  (if (null set-2)
+  (if (eq nil set-2)
       (sort set-1 #'<)
       (let ((elem (car set-2)))
         (if (set-member set-1 elem)
@@ -37,8 +37,8 @@
 
 ;Intersection
 (defun set-intersection (set-1 set-2)
-  (cond ((null set-1) nil)
-        ((null set-2) nil)
+  (cond ((eq nil set-1) nil)
+        ((eq nil set-2) nil)
         ((set-member set-2 (car set-1))
          (cons (car set-1) (set-intersection (cdr set-1) set-2)))
         (t (set-intersection (cdr set-1) set-2))))
