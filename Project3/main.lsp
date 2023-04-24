@@ -56,11 +56,14 @@
     result))
 
 (defun boolean-eval (list)
+    ; Initialize variables
     (let (
         (operator (car list))
+        ; Evaluate each argument in case it's an expression
         (arg1  (eval (car (cdr list))))
         (arg2 (eval (car (cdr (cdr list)))))
         )
+    ; Handle boolean logic
     (cond ((equal operator `and ) (and arg1 arg2))
         ((equal operator `or ) (or arg1 arg2))
         ((equal operator `not ) (not arg1))
