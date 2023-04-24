@@ -47,6 +47,24 @@
 (print(set-intersection '(1 2 3) '())) ;;Nil
 (print(set-intersection '(2 3) '(2 2 2 3))) ;(2 3)
 
+;Return Difference
+(defun set-diff (set-1 set-2)
+  (let ((result '()))
+    (dolist (x set-1)
+      (unless (member x set-2 :test #'equal)
+        (setq result (cons x result))))
+    result))
+
+(defun list-to-set (lst)
+  "Convert a list to a set (i.e., a list with no duplicates)"
+  (let ((result '()))
+    (dolist (x lst)
+      (unless (member x result :test #'equal)
+        (setq result (cons x result))))
+    result))
+    
+    (print (set-diff `(1 2 3) `(2 5 6)))
+
 
 
 ; test
