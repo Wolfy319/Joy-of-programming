@@ -55,17 +55,20 @@
         (setq result (cons x result))))
     result))
 
-(defun list-to-set (lst)
-  "Convert a list to a set (i.e., a list with no duplicates)"
-  (let ((result '()))
-    (dolist (x lst)
-      (unless (member x result :test #'equal)
-        (setq result (cons x result))))
-    result))
-    
-    (print (set-diff `(1 2 3) `(2 5 6)))
-
-
+(defun boolean-eval (list)
+    (let (
+        (operator (car list))
+        (arg1  (eval (car (cdr list))))
+        (arg2 (eval (car (cdr (cdr list)))))
+        )
+    (cond ((equal operator `and ) (and arg1 arg2))
+        ((equal operator `or ) (or arg1 arg2))
+        ((equal operator `not ) (not arg1))
+        ((equal operator `xor ) (boolean-xor arg1 arg2))
+        ((equal operator `implies ) (boolean-implies arg1 arg2))
+        ((equal operator `iff ) (bi-imp arg1 arg2))
+    ))
+)
 
 ; test
 (print (set-member `(1 2) 3)) ;Nil
@@ -85,6 +88,14 @@
         (print i)
         ;; Looping logic goes here)
     (fake-for-loop (+ i 1) end)))
+
+(defun list-to-set (lst)
+  "Convert a list to a set (i.e., a list with no duplicates)"
+  (let ((result '()))
+    (dolist (x lst)
+      (unless (member x result :test #'equal)
+        (setq result (cons x result))))
+    result))
 
 ;; ---------------------- UNIT TESTS -----------------------------
 
