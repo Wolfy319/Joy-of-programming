@@ -48,12 +48,24 @@
 (print(set-intersection '(2 3) '(2 2 2 3))) ;(2 3)
 
 ;Return Difference
-(defun set-diff (set-1 set-2)
-  (let ((result '()))
-    (dolist (x set-1)
-      (unless (member x set-2 :test #'equal)
-        (setq result (cons x result))))
-    result))
+ (defun set-diff (set-1 set-2)
+  (labels ((helper (lst1 lst2 acc)
+                   (cond ((null lst1) acc)
+                         ((not (member (car lst1) lst2 :test #'equal))
+                          (helper (cdr lst1) lst2 (cons (car lst1) acc)))
+                         (t (helper (cdr lst1) lst2 acc)))))
+    (helper set-1 set-2 '())))
+
+(defun list-to-set (lst)
+  "Convert a list to a set (i.e., a list with no duplicates)"
+  (labels ((helper (src acc)
+                   (cond ((null src) acc)
+                         ((not (member (car src) acc :test #'equal))
+                          (helper (cdr src) (cons (car src) acc)))
+                         (t (helper (cdr src) acc)))))
+    (helper lst '())))
+
+(print (set-diff `(1 2 3) `(2 5 6)))
 
 (defun boolean-eval (list)
     ; Initialize variables
@@ -72,6 +84,8 @@
         ((equal operator `iff ) (bi-imp arg1 arg2))
     ))
 )
+
+
 
 ; test
 (print (set-member `(1 2) 3)) ;Nil
