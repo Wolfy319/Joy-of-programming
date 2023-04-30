@@ -69,13 +69,13 @@
 
 (defun boolean-eval (list)
     ; Initialize variables
-    (let (
-        (operator (car list))
+    (let* (
+        (operator (first list))
         ; Evaluate each argument in case it's an expression
-        (arg1  (eval (car (cdr list))))
-        (arg2 (eval (car (cdr (cdr list)))))
-        )
+        (arg1 (parse (second list)))
+        (arg2 (parse (third list))))
     ; Handle boolean logic
+    (print arg2)
     (cond ((equal operator `and ) (and arg1 arg2))
         ((equal operator `or ) (or arg1 arg2))
         ((equal operator `not ) (not arg1))
@@ -91,6 +91,14 @@
 (print (set-member `(1 2) 3)) ;Nil
 (print (set-member `(1 4) 4)) ;T
 ;; ---------------------- UTILITY FUNCTIONS ---------------------- 
+
+;; Parse an argument
+(defun parse (arg)
+  (cond ((equal arg t) t)
+        ((equal arg nil) nil)
+        (t (first arg) (second arg) (third arg))
+  )
+)
 
 ;; Get the element at the target index in a list
 (defun get-element-at (i target elements) 
@@ -123,7 +131,7 @@
 (print (set-union '(1 2) '(2 4)))
 
 ;; Test boolean-implies function
-(print (boolean-implies t nil))
+(print (boolean-implies t nil)) ;
 (print (boolean-implies t t))
 (print (boolean-implies nil nil))
 (print (boolean-implies nil t))
